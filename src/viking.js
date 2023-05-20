@@ -61,24 +61,41 @@ class War {
         let saxonAttackedIndex = Math.floor(Math.random() * (this.saxonArmy.length-1))
         let vikingAttackerIndex = Math.floor(Math.random() * (this.vikingArmy.length-1))
         
-        this.saxonArmy[saxonAttackedIndex].receiveDamage(this.vikingArmy[vikingAttackerIndex].strength)
-        
+        let resultFight = this.saxonArmy[saxonAttackedIndex].receiveDamage(this.vikingArmy[vikingAttackerIndex].strength)
+
         if(this.saxonArmy[saxonAttackedIndex].health <1) {
             this.saxonArmy.splice(saxonAttackedIndex,1)
+            return resultFight
         }
-
-        return `${this.saxonArmy[saxonAttackedIndex].health} is the new health of our Saxon`
+        else {
+            return resultFight
+        }
     }
+
     saxonAttack() {
-        let saxonAttackerIndex = Math.floor(Math.random() * (this.saxonArmy.length-1))
         let vikingAttackedIndex = Math.floor(Math.random() * (this.vikingArmy.length-1))
+        let saxonAttackerIndex = Math.floor(Math.random() * (this.saxonArmy.length-1))
         
-        this.vikingArmy[vikingAttackedIndex].receiveDamage(this.saxonArmy[saxonAttackerIndex].strength)
-        
+        let resultFight = this.vikingArmy[vikingAttackedIndex].receiveDamage(this.saxonArmy[saxonAttackerIndex].strength)
+
         if(this.vikingArmy[vikingAttackedIndex].health <1) {
             this.vikingArmy.splice(vikingAttackedIndex,1)
+            return resultFight
         }
+        else {
+            return resultFight
+        }
+    }
 
-        return `${this.saxonArmy[saxonAttackedIndex].health} is the new health of our Saxon`
+    showStatus() {
+        if(this.saxonArmy.length == 0) {
+            return `Vikings have won the war of the century!`
+        }
+        else if(this.vikingArmy.length == 0) {
+            return `Saxons have fought for their lives and survived another day...`
+        }
+        else if(this.saxonArmy.length > 0 && this.vikingArmy.length > 0) {
+            return `Vikings and Saxons are still in the thick of battle.`
+        }
     }
 }
